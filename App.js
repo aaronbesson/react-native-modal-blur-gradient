@@ -5,7 +5,7 @@ import {
   Pressable,
   StyleSheet, Text, useColorScheme, View
 } from "react-native";
-import Animated, { FlipInXUp } from "react-native-reanimated";
+import Animated, { FlipInXUp, FlipOutXDown } from "react-native-reanimated";
 
 const { width, height } = Dimensions.get("window");
 
@@ -51,6 +51,7 @@ export default SendModal = ({}) => {
           >
             <Animated.View
               entering={FlipInXUp.duration(500)}
+              exiting={FlipOutXDown.duration(500)}
               style={[
                 styles.modalView,
                 {
