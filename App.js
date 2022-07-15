@@ -1,12 +1,17 @@
 import { BlurView } from "expo-blur";
 import React, { useState } from "react";
 import {
-  Dimensions, ImageBackground, Modal,
+  Dimensions,
+  ImageBackground,
+  Modal,
   Pressable,
-  StyleSheet, Text, useColorScheme, View
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
 } from "react-native";
 import Animated, { FlipInXUp, FlipOutXDown } from "react-native-reanimated";
-import {LinearGradient} from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 
 const { width, height } = Dimensions.get("window");
 
@@ -24,8 +29,6 @@ export default SendModal = ({}) => {
         resizeMode="cover"
         style={styles.image}
       >
-
-
         <Pressable
           style={[
             styles.buttonClose,
@@ -37,16 +40,15 @@ export default SendModal = ({}) => {
         >
           <Text style={styles.textStyle}>Open</Text>
         </Pressable>
-
         <Modal animationType="fade" transparent={true} visible={modalVisible}>
-
-                    <LinearGradient
-                        colors={colorScheme === 'light' ?
-                            ['#FDB13F', '#DD544C', '#751F98']
-                            :
-                            ['#751F98', '#300841', '#751F98']}
-                        style={styles.gradient} />
-    
+          <LinearGradient
+            colors={
+              colorScheme === "light"
+                ? ["#FDB13F", "#DD544C", "#751F98"]
+                : ["#751F98", "#300841", "#751F98"]
+            }
+            style={styles.gradient}
+          />
           <View style={styles.modalBk}></View>
           <BlurView intensity={50} style={styles.blurView}></BlurView>
           <View
@@ -70,7 +72,9 @@ export default SendModal = ({}) => {
                     colorScheme === "light" ? "#FDB13F" : "#751F98",
                 },
               ]}
-            ></Animated.View>
+            >
+              {/* // Add content here */}
+            </Animated.View>
           </View>
           <Pressable
             style={[
