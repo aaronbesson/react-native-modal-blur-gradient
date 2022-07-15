@@ -1,71 +1,98 @@
 import { BlurView } from "expo-blur";
 import React, { useState } from "react";
 import {
-  Text, View, Dimensions, Modal, Pressable, StyleSheet, useColorScheme
+  Text,
+  View,
+  Dimensions,
+  Modal,
+  Pressable,
+  StyleSheet,
+  useColorScheme,
+  ImageBackground,
 } from "react-native";
-import Animated, {
-  FlipInXUp
-} from "react-native-reanimated";
+import Animated, { FlipInXUp } from "react-native-reanimated";
 
 const { width, height } = Dimensions.get("window");
 
-export default SendModal = ({ modalVisible, setModalVisible }) => {
+export default SendModal = ({}) => {
   const colorScheme = useColorScheme();
+  const [modalVisible, setModalVisible] = useState(false);
+
   // Get my udpated balance
   return (
     <View style={styles.container}>
+      <ImageBackground
+        source={colorScheme === 'light' ? require("./assets/bg1.png") : require('./assets/bg8.png')}
+        resizeMode="cover"
+        style={styles.image}
+      >
+        <Pressable
+            style={[styles.buttonClose,
+              {
+                backgroundColor:
+                  colorScheme === "light" ? "white" : "#121212",
+              }]}
+            onPress={() => setModalVisible(!modalVisible)}
+          >
+            <Text style={styles.textStyle}>Open</Text>
+          </Pressable>
+
         <Modal animationType="fade" transparent={true} visible={modalVisible}>
-          <View style={styles.modalBk}>
-          </View>
-          <BlurView intensity={60} style={styles.blurView}></BlurView>
+          <View style={styles.modalBk}></View>
+          <BlurView intensity={50} style={styles.blurView}></BlurView>
           <View
             style={[
               styles.centeredView,
               {
                 backgroundColor:
                   colorScheme === "light"
-                    ? "rgba(255,255,255,0.3)"
-                    : "rgba(0,0,0,0.35)",
+                    ? "rgba(255,255,255,0)"
+                    : "rgba(0,0,0,0.65)",
               },
             ]}
           >
-         <Animated.View
-                entering={FlipInXUp.duration(500)}
-                style={[
-                  styles.modalView,
-                  {
-                    backgroundColor:
-                      colorScheme === "light" ? "white" : "#121212",
-                  },
-                ]}
-              >
-                <View
-                  style={{
-                    backgroundColor: "transparent",
-                    width: width - 96,
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    paddingVertical: "6%",
-                  }}
-                ></View>
-              </Animated.View>
-            
+            <Animated.View
+              entering={FlipInXUp.duration(500)}
+              style={[
+                styles.modalView,
+                {
+                  backgroundColor:
+                    colorScheme === "light" ? "#FDB13F" : "#751F98",
+                },
+              ]}
+            >
+  
+            </Animated.View>
           </View>
           <Pressable
-            style={styles.buttonClose}
+            style={[styles.buttonClose,
+              {
+                backgroundColor:
+                  colorScheme === "light" ? "white" : "#121212",
+              }]}
             onPress={() => setModalVisible(!modalVisible)}
           >
-            <Text style={styles.textStyle}>Cancel</Text>
+            <Text style={styles.textStyle}>Close</Text>
           </Pressable>
         </Modal>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "transparent",
-    alignContent: "center",
+  },
+  image: {
+    width: width,
+    height: height,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "transparent",
   },
   modalBk: {
     width: width,
@@ -90,27 +117,13 @@ const styles = StyleSheet.create({
   sendCard: {
     backgroundColor: "transparent",
     marginTop: -80,
-    shadowColor: "#777",
+    shadowColor: "#DD544C",
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.7,
     shadowRadius: 12,
     elevation: 5,
     borderWidth: 0,
     borderColor: "rgba(150,150,150,0.6)",
-  },
-  avatarContainer: {
-    overflow: "hidden",
-    borderRadius: 32,
-    backgroundColor: "transparent",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-  value: {
-    fontSize: 42,
-    fontWeight: "300",
   },
   centeredView: {
     height: height,
@@ -127,6 +140,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: width - 48,
+    minHeight: width,
     paddingTop: 24,
     borderRadius: 24,
     marginVertical: "33.3%",
