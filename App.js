@@ -6,6 +6,7 @@ import {
   StyleSheet, Text, useColorScheme, View
 } from "react-native";
 import Animated, { FlipInXUp, FlipOutXDown } from "react-native-reanimated";
+import {LinearGradient} from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get("window");
 
@@ -23,6 +24,8 @@ export default SendModal = ({}) => {
         resizeMode="cover"
         style={styles.image}
       >
+
+
         <Pressable
           style={[
             styles.buttonClose,
@@ -36,6 +39,14 @@ export default SendModal = ({}) => {
         </Pressable>
 
         <Modal animationType="fade" transparent={true} visible={modalVisible}>
+
+                    <LinearGradient
+                        colors={colorScheme === 'light' ?
+                            ['#FDB13F', '#DD544C', '#751F98']
+                            :
+                            ['#751F98', '#300841', '#751F98']}
+                        style={styles.gradient} />
+    
           <View style={styles.modalBk}></View>
           <BlurView intensity={50} style={styles.blurView}></BlurView>
           <View
@@ -97,7 +108,7 @@ const styles = StyleSheet.create({
     height: height,
     position: "absolute",
     top: 0,
-    zIndex: -1,
+    zIndex: 1,
     backgroundColor: "transparent",
   },
   gradient: {
@@ -105,8 +116,8 @@ const styles = StyleSheet.create({
     width: width,
     position: "absolute",
     bottom: 0,
-    zIndex: 0,
-    opacity: 0.6,
+    zIndex: -1,
+    opacity: 0.1,
   },
   title: {
     fontSize: 20,
