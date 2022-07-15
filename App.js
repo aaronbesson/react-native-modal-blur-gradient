@@ -1,14 +1,9 @@
 import { BlurView } from "expo-blur";
 import React, { useState } from "react";
 import {
-  Text,
-  View,
-  Dimensions,
-  Modal,
+  Dimensions, ImageBackground, Modal,
   Pressable,
-  StyleSheet,
-  useColorScheme,
-  ImageBackground,
+  StyleSheet, Text, useColorScheme, View
 } from "react-native";
 import Animated, { FlipInXUp } from "react-native-reanimated";
 
@@ -17,25 +12,28 @@ const { width, height } = Dimensions.get("window");
 export default SendModal = ({}) => {
   const colorScheme = useColorScheme();
   const [modalVisible, setModalVisible] = useState(false);
-
-  // Get my udpated balance
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={colorScheme === 'light' ? require("./assets/bg1.png") : require('./assets/bg8.png')}
+        source={
+          colorScheme === "light"
+            ? require("./assets/bg1.png")
+            : require("./assets/bg8.png")
+        }
         resizeMode="cover"
         style={styles.image}
       >
         <Pressable
-            style={[styles.buttonClose,
-              {
-                backgroundColor:
-                  colorScheme === "light" ? "white" : "#121212",
-              }]}
-            onPress={() => setModalVisible(!modalVisible)}
-          >
-            <Text style={styles.textStyle}>Open</Text>
-          </Pressable>
+          style={[
+            styles.buttonClose,
+            {
+              backgroundColor: colorScheme === "light" ? "white" : "#121212",
+            },
+          ]}
+          onPress={() => setModalVisible(!modalVisible)}
+        >
+          <Text style={styles.textStyle}>Open</Text>
+        </Pressable>
 
         <Modal animationType="fade" transparent={true} visible={modalVisible}>
           <View style={styles.modalBk}></View>
@@ -60,16 +58,15 @@ export default SendModal = ({}) => {
                     colorScheme === "light" ? "#FDB13F" : "#751F98",
                 },
               ]}
-            >
-  
-            </Animated.View>
+            ></Animated.View>
           </View>
           <Pressable
-            style={[styles.buttonClose,
+            style={[
+              styles.buttonClose,
               {
-                backgroundColor:
-                  colorScheme === "light" ? "white" : "#121212",
-              }]}
+                backgroundColor: colorScheme === "light" ? "white" : "#121212",
+              },
+            ]}
             onPress={() => setModalVisible(!modalVisible)}
           >
             <Text style={styles.textStyle}>Close</Text>
