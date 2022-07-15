@@ -123,21 +123,6 @@ const styles = StyleSheet.create({
     zIndex: -1,
     opacity: 0.1,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  sendCard: {
-    backgroundColor: "transparent",
-    marginTop: -80,
-    shadowColor: "#DD544C",
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.7,
-    shadowRadius: 12,
-    elevation: 5,
-    borderWidth: 0,
-    borderColor: "rgba(150,150,150,0.6)",
-  },
   centeredView: {
     height: height,
     width: width,
@@ -171,9 +156,6 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  buttonOpen: {
-    backgroundColor: "transparent",
-  },
   buttonClose: {
     position: "absolute",
     bottom: 48,
@@ -188,16 +170,5 @@ const styles = StyleSheet.create({
     color: "grey",
     fontWeight: "bold",
     textAlign: "center",
-  },
-  modalText: {
-    fontSize: 18,
-    marginBottom: 0,
-    textAlign: "center",
-  },
-  headerContainer: {
-    height: 80,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 10,
   },
 });
